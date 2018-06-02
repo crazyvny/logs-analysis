@@ -1,0 +1,19 @@
+/home/vagrant/.local/lib/python2.7/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+What are the most viewed artcles?
+
+Candidate is jerk, alleges rival - 338647 views
+Bears love berries, alleges bear - 253801 views
+Bad things gone, say good people - 170098 views
+
+
+What are the most popular articles of all time?
+
+Rudolf von Treppenwitz - 338647 views
+Ursula La Multa - 253801 views
+Anonymous Contributor - 170098 views
+
+
+On which days more than 1% of the requests led to error?
+
+July 17, 2016 -- 2.26 % errors
