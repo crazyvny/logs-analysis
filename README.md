@@ -1,6 +1,6 @@
 # Templte for Python Script for logs analysis project on Udacity
 
-## Descripption
+## Description
 
 ## Getting Started
 
