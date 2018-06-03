@@ -1,10 +1,19 @@
+#! /usr/bin/env python3
+
 import psycopg2
 from datetime import date
 
-connection = psycopg2.connect("dbname=news")
-cursor = connection.cursor()
+try:
+    connection = psycopg2.connect("dbname=news")
+    cursor = connection.cursor()
+
+
+except:
+    print("Eroor connecting database.")
 # Declaring a dummy tuple as tuple to string concation not possible.
-a3 = ('dummy','tuple','views', '-')
+a3 = ('dummy', 'tuple', 'views',  '-')
+
+
 def views():
     print("What are the most viewed artcles?\n")
     cursor.execute("""SELECT title, log.path, COUNT(log.path) AS hits, authors.name
@@ -17,11 +26,13 @@ def views():
         ORDER BY hits DESC LIMIT 3""")
     a2 = cursor.fetchall()
     for a2 in a2:
-       print a2[0], a3[3], a2[2], a3[2]
+        print a2[0], a3[3], a2[2], a3[2]
     print("\n")
 views()
 
+
 def articles():
+
     print("What are the most popular articles of all time?\n")
     cursor.execute("""SELECT title, path, COUNT(path) AS hits, authors.name
         FROM articles
@@ -37,6 +48,7 @@ def articles():
         print b2[3], a3[3], b2[2], a3[2]
     print("\n")
 articles()
+
 
 def errors():
     print("On which days more than 1% of the requests led to error?\n")
@@ -54,6 +66,6 @@ def errors():
     c3 = cursor.fetchall()
     # Declaring a dummy tuple as tuple to string concation not possible.
     a4 = ('dummy', '--', 'tuple', '%', 'errors')
-    for i,j in c3:
-        print "{:%B %d, %Y}".format(i),a4[1],j,a4[3],a4[4]
+    for i, j in c3:
+        print "{:%B %d, %Y}".format(i), a4[1], j, a4[3], a4[4]
 errors()
