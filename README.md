@@ -14,7 +14,7 @@
 
 5. To set up database,cd into the vagrant directory and use the command psql -d news -f newsdata.sql.
 
-6. Run datasql.py script using command 'python base1.py'.
+6. Run base1.py script using command 'python base1.py'.
 
 7. This will outputs the popular views, popular articles, errors from the database.
 
