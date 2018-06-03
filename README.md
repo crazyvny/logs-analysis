@@ -12,7 +12,7 @@
 
 4. Log into vagrant using the command 'vagrant ssh'.
 
-5. Run datasql.py script using command 'python3 datasql.py'.
+5. Run datasql.py script using command 'python base.py'.
 
 6. This will outputs the popular views, popular articles, errors from the database.
 
