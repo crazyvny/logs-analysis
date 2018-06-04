@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#! /usr/bin/env python
 
 import psycopg2
 from datetime import date
@@ -8,15 +8,16 @@ try:
     cursor = connection.cursor()
 
 
-except:
-    print("Eroor connecting database.")
+except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
 # Declaring a dummy tuple as tuple to string concation not possible.
 a3 = ('dummy', 'tuple', 'views',  '-')
 
 
 def views():
     print("What are the most viewed artcles?\n")
-    cursor.execute("""SELECT title, log.path, COUNT(log.path) AS hits, authors.name
+    cursor.execute("""SELECT title, log.path, COUNT(log.path) AS hits,
+        authors.name
         FROM articles
         JOIN authors
         ON articles.author = authors.id
@@ -26,27 +27,26 @@ def views():
         ORDER BY hits DESC LIMIT 3""")
     a2 = cursor.fetchall()
     for a2 in a2:
-        print a2[0], a3[3], a2[2], a3[2]
+        print('"{}" - {} views'.format(a2[0], a2[2]))
     print("\n")
 views()
 
 
 def articles():
-
     print("What are the most popular articles of all time?\n")
-    cursor.execute("""SELECT title, path, COUNT(path) AS hits, authors.name
-        FROM articles
-        JOIN authors
-        ON articles.author = authors.id
-        JOIN log
-        ON log.path = concat('/article/', articles.slug)
-        WHERE log.status LIKE '200 OK'
-        GROUP BY authors.name, articles.title, log.path
-        ORDER BY hits DESC LIMIT 3;""")
+    cursor.execute("""select authors.name, count(*) as views
+             from articles
+             join authors
+             on articles.author = authors.id
+             join log
+             on articles.slug = substring(log.path, 10)
+             where log.status LIKE '200 OK'
+             group by authors.name ORDER BY views DESC""")
     b2 = cursor.fetchall()
     for b2 in b2:
-        print b2[3], a3[3], b2[2], a3[2]
+        print('"{}" - {} views'.format(b2[0], b2[1]))
     print("\n")
+
 articles()
 
 
